@@ -5,7 +5,7 @@ package ro.info.uaic.launcher;
  */
 public enum Parameter
 {
-    STORAGE_FILE("f"), PORT("p"), PASSWORD("pass");
+    STORAGE_DIR("d"), PORT("p"), PASSWORD("pass");
 
     private String key;
 

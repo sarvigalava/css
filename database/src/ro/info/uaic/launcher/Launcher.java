@@ -5,9 +5,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import ro.info.uaic.DatabaseService;
 
 import javax.ws.rs.core.UriBuilder;
@@ -24,7 +22,6 @@ import java.util.Map;
 public class Launcher
 {
     @Autowired private ConsoleArgReader argReader;
-    @Autowired private DatabaseService databaseService;
 
     private static final int DEFAULT_PORT = 9998;
 
@@ -72,7 +69,7 @@ public class Launcher
     {
 
         Parameters parameters = argReader.read(args);
-        if (parameters.get(Parameter.STORAGE_FILE) == null)
+        if (parameters.get(Parameter.STORAGE_DIR) == null)
         {
             printHelp();
         }
@@ -89,8 +86,6 @@ public class Launcher
     }
 
     private void launch(Parameters parameters) {
-        databaseService.init(parameters.get(Parameter.STORAGE_FILE));
-
         try {
             HttpServer httpServer = startServer(parameters);
             String msg = "Jersey app started with WADL available at %sapplication.wadl\n" +

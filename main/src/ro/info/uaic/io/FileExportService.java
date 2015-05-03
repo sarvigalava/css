@@ -27,8 +27,8 @@ public class FileExportService
 
         StringBuilder output = new StringBuilder();
 
-        Field[] candidateFields = new Candidate().getClass().getDeclaredFields();
-        Field[] resultFields = new Result().getClass().getDeclaredFields();
+        Field[] candidateFields = Candidate.class.getDeclaredFields();
+        Field[] resultFields = Result.class.getDeclaredFields();
 
         // Generate line with field of candidate
         for(int i = 0; i < candidateFields.length; i++)

@@ -1,12 +1,13 @@
-package ro.info.uaic.definitions;
+package ro.info.uaic.definitions.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by lotus on 26.04.2015.
  */
-public class TableDefinition
+public class TableDefinition implements Serializable
 {
     private String name;
     private List<ColumnDefinition> columns = new ArrayList<>();
@@ -29,5 +30,21 @@ public class TableDefinition
     public void setColumns(List<ColumnDefinition> columns)
     {
         this.columns = columns;
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuffer sb = new StringBuffer();
+        sb.append("\tTable : ");
+        sb.append(name);
+        sb.append("\t\tColumns : ");
+        for (ColumnDefinition cd : columns)
+        {
+            sb.append(cd);
+            sb.append("\n");
+        }
+
+        return sb.toString();
     }
 }

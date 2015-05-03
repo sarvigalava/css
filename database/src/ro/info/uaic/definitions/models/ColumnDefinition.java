@@ -1,4 +1,4 @@
-package ro.info.uaic.definitions;
+package ro.info.uaic.definitions.models;
 
 import java.io.Serializable;
 
@@ -39,5 +39,10 @@ public class ColumnDefinition implements Serializable
     public void setSize(int size)
     {
         this.size = size;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + dataType + "(" + size + ")";
     }
 }

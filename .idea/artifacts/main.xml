@@ -8,7 +8,11 @@
           <element id="module-output" name="main" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="module" name="JUnit4" module-name="main" />
+          <element id="library" level="project" name="org.glassfish.web:el-impl:2.2" />
           <element id="library" level="project" name="Spring-4.1.6.RELEASE" />
+          <element id="library" level="application" name="Spring-4.1.6.RELEASE" />
+          <element id="library" level="project" name="org.springframework:org.springframework.web:3.2.2.RELEASE" />
         </element>
       </element>
     </root>
