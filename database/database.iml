@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Spring-4.1.6.RELEASE" level="project" />
+    <orderEntry type="library" name="com.sun.jersey:jersey-grizzly2:1.9.1" level="project" />
+    <orderEntry type="library" name="org.glassfish.grizzly:grizzly-http:2.1.2" level="project" />
+    <orderEntry type="library" name="org.glassfish.grizzly:grizzly-framework:2.1.2" level="project" />
+    <orderEntry type="library" name="org.glassfish.gmbal:gmbal-api-only:3.0.0-b023" level="project" />
+    <orderEntry type="library" name="org.glassfish.external:management-api:3.0.0-b012" level="project" />
+    <orderEntry type="library" name="org.glassfish.grizzly:grizzly-http-server:2.1.2" level="project" />
+    <orderEntry type="library" name="org.glassfish.grizzly:grizzly-rcm:2.1.2" level="project" />
+    <orderEntry type="library" name="org.glassfish.grizzly:grizzly-http-servlet:2.1.2" level="project" />
+    <orderEntry type="library" name="org.glassfish:javax.servlet:3.1" level="project" />
+    <orderEntry type="library" name="com.sun.jersey:jersey-server:1.9.1" level="project" />
+    <orderEntry type="library" name="com.sun.jersey:jersey-core:1.9.1" level="project" />
+  </component>
+</module>
