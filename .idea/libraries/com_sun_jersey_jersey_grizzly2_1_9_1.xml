@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="com.sun.jersey:jersey-grizzly2:1.9.1" type="repository">
+    <properties maven-id="com.sun.jersey:jersey-grizzly2:1.9.1" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-grizzly2/1.9.1/jersey-grizzly2-1.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/grizzly/grizzly-http/2.1.2/grizzly-http-2.1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/grizzly/grizzly-framework/2.1.2/grizzly-framework-2.1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/gmbal/gmbal-api-only/3.0.0-b023/gmbal-api-only-3.0.0-b023.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/external/management-api/3.0.0-b012/management-api-3.0.0-b012.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/grizzly/grizzly-http-server/2.1.2/grizzly-http-server-2.1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/grizzly/grizzly-rcm/2.1.2/grizzly-rcm-2.1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/grizzly/grizzly-http-servlet/2.1.2/grizzly-http-servlet-2.1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/glassfish/javax.servlet/3.1/javax.servlet-3.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-server/1.9.1/jersey-server-1.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/asm/asm/3.1/asm-3.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-core/1.9.1/jersey-core-1.9.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-grizzly2/1.9.1/jersey-grizzly2-1.9.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

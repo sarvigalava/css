@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="com.sun.jersey:jersey-core:1.9.1" type="repository">
+    <properties maven-id="com.sun.jersey:jersey-core:1.9.1" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-core/1.9.1/jersey-core-1.9.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/xml/bind/jaxb-api/2.1/jaxb-api-2.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/osgi/osgi_R4_core/1.0/osgi_R4_core-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-core/1.9.1/jersey-core-1.9.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
