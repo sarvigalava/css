@@ -3,6 +3,7 @@ package ro.info.uaic.persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.file.*;
@@ -102,6 +103,18 @@ public class FileService
         catch (IOException ex)
         {
             handleWriteError(ex);
+        }
+    }
+
+    public RandomAccessFile openFile(String path, boolean readonly)
+    {
+        try
+        {
+            return new RandomAccessFile(path, readonly ? "r" : "rw");
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new RuntimeException(e);
         }
     }
 

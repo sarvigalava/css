@@ -10,15 +10,15 @@ import java.io.Serializable;
  */
 public class Cell implements Serializable
 {
-    private ColumnDefinition columnDefinition;
+    private String column;
     private Object data;
 
-    public ColumnDefinition getColumnDefinition() {
-        return columnDefinition;
+    public String getColumn() {
+        return column;
     }
 
-    public void setColumnDefinition(ColumnDefinition columnDefinition) {
-        this.columnDefinition = columnDefinition;
+    public void setColumn(String column) {
+        this.column = column;
     }
 
     public Object getData() {
