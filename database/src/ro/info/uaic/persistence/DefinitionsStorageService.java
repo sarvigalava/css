@@ -14,29 +14,31 @@ import java.io.*;
 @Service
 public class DefinitionsStorageService
 {
-    private static final String DEFINITIONS_FILE = "definitions";
-
     @Autowired Serializer serializer;
     @Autowired FileService fileService;
+    @Autowired PathsService pathsService;
 
     public DatabaseDefinition read(String directory)
     {
-        String file = getDefinitionsFilePath(directory);
+        String file = pathsService.getDefinitionsFilePath(directory);
+        if (!fileService.fileExists(file))
+        {
+            return new DatabaseDefinition();
+        }
         byte[] definitions = fileService.readBytes(file);
 
         return deserializeDefinitions(definitions);
     }
 
-    public void store(DatabaseDefinition databaseDefinition, String directory) throws IOException
+    public void store(DatabaseDefinition databaseDefinition, String directory)
     {
-        String file = getDefinitionsFilePath(directory);
+        String file = pathsService.getDefinitionsFilePath(directory);
+        if (!fileService.fileExists(file))
+        {
+            fileService.createFile(file);
+        }
         byte[] serializedDefinitions = serializeDefinitions(databaseDefinition);
         fileService.writeBytes(serializedDefinitions, file);
-    }
-
-    public String getDefinitionsFilePath(String dir)
-    {
-        return dir + "/" + DEFINITIONS_FILE;
     }
 
     DatabaseDefinition deserializeDefinitions(byte[] bytes)

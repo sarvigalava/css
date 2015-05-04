@@ -21,4 +21,9 @@ public class Parameters
     {
         return values.get(parameter);
     }
+
+    public String getStorageDirectory()
+    {
+        return get(Parameter.STORAGE_DIR);
+    }
 }

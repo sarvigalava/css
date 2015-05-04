@@ -6,7 +6,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 
-@Path("/hello")
+@Path("rest/hello")
 public class QueryController {
 
     // This method is called if TEXT_PLAIN is request

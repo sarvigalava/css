@@ -73,6 +73,38 @@ public class FileService
         }
     }
 
+    public boolean fileExists(String path)
+    {
+        Path p = Paths.get(path);
+        return Files.exists(p);
+    }
+
+    public void createDirectory(String path)
+    {
+        try
+        {
+            Path p = Paths.get(path);
+            Files.createDirectory(p);
+        }
+        catch (IOException ex)
+        {
+            handleWriteError(ex);
+        }
+    }
+
+    public void createFile(String path)
+    {
+        try
+        {
+            Path p = Paths.get(path);
+            Files.createFile(p);
+        }
+        catch (IOException ex)
+        {
+            handleWriteError(ex);
+        }
+    }
+
     private void handleReadError(IOException ex)
     {
         throw new RuntimeException("Error reading definitions. Reason : \n" + ex.toString());

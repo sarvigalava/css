@@ -20,10 +20,9 @@ public class DatabaseService
 
     private DatabaseDefinition databaseDefinition;
 
-    @PostConstruct
     public void init()
     {
-        databaseDefinition = definitionsStorageService.read(parameters.get(Parameter.STORAGE_DIR));
+        databaseDefinition = definitionsStorageService.read(parameters.getStorageDirectory());
     }
 
     @Override

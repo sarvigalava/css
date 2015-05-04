@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConsoleArgReader
 {
-    public Parameters read(String[] args)
+    public void read(String[] args, Parameters parameters)
     {
-        Parameters parameters = new Parameters();
-
         for (int i = 0; i < args.length / 2; ++i)
         {
             String key = args[i * 2];
@@ -22,7 +20,5 @@ public class ConsoleArgReader
                 parameters.add(parameter, val);
             }
         }
-
-        return parameters;
     }
 }
