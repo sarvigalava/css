@@ -27,5 +27,6 @@
     <orderEntry type="library" name="com.sun.jersey:jersey-core:1.9.1" level="project" />
     <orderEntry type="library" name="org.springframework:org.springframework.web:3.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="com.sun.jersey.contribs:jersey-spring:1.10-b02" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1" level="project" />
   </component>
 </module>
