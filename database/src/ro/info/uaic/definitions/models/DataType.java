@@ -5,5 +5,18 @@ package ro.info.uaic.definitions.models;
  */
 public enum DataType
 {
-    STRING, INTEGER, FLOAT, DATE, RAW
+    STRING, INTEGER, FLOAT, DATE, RAW;
+
+    public static DataType parse(String name)
+    {
+        for (DataType type : values())
+        {
+            if (name.trim().equalsIgnoreCase(type.toString()))
+            {
+                return type;
+            }
+        }
+
+        throw new IllegalArgumentException(name);
+    }
 }

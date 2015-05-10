@@ -10,6 +10,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by lotus on 04.05.2015.
@@ -19,16 +22,22 @@ public class RestServiceArgumentsReader
 {
     TableDefinition readTableDefinition(String definition)
     {
-        String[] tokens = definition.split("[|]");
+        List<String> tokens = Arrays.asList(definition.split("[|]"));
+        Iterator<String> iterator = tokens.iterator();
         TableDefinition tableDefinition = new TableDefinition();
-        for (int i=0; i < tokens.length/2; ++i)
+        while (iterator.hasNext())
         {
-            String column = tokens[i*2];
-            String type = tokens[i*2+1];
+            String column = iterator.next();
+            String type = iterator.next();
             ColumnDefinition columnDefinition = new ColumnDefinition();
             columnDefinition.setName(column);
-            columnDefinition.setSize(60);
-            columnDefinition.setDataType(DataType.valueOf(type));
+            columnDefinition.setSize(8);
+            columnDefinition.setDataType(DataType.parse(type));
+            if (columnDefinition.getDataType() == DataType.RAW
+                    || columnDefinition.getDataType() == DataType.STRING)
+            {
+                columnDefinition.setSize(Integer.valueOf(iterator.next()));
+            }
             tableDefinition.getColumns().add(columnDefinition);
         }
 
