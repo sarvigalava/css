@@ -16,8 +16,8 @@
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/spring-config.xml</file>
+        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
+          <file>file://$MODULE_DIR$/web/WEB-INF/spring-config.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -30,10 +30,10 @@
       <sourceFolder url="file://$MODULE_DIR$/test/ro" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test/src" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="GlassFish 4.1.0 - JSF" level="application_server_libraries" />
-    <orderEntry type="module-library" scope="TEST">
+    <orderEntry type="module-library" exported="" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
           <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.11.jar!/" />
@@ -46,9 +46,10 @@
     </orderEntry>
     <orderEntry type="library" name="IceFaces-3.1.0" level="project" />
     <orderEntry type="library" name="org.glassfish.web:el-impl:2.2" level="project" />
-    <orderEntry type="library" exported="" name="org.springframework:org.springframework.web:3.2.2.RELEASE" level="project" />
+    <orderEntry type="library" name="org.springframework:org.springframework.web:3.2.2.RELEASE" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1" level="project" />
     <orderEntry type="library" name="org.springframework:spring-expression:3.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="org.springframework:spring-test:3.0.6.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Spring-4.1.6.RELEASE" level="project" />
   </component>
 </module>

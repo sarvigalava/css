@@ -2,12 +2,13 @@ package ro.info.uaic.io;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ro.info.uaic.io.FileExportService;
 import ro.info.uaic.models.Candidate;
 import ro.info.uaic.models.Result;
+import ro.info.uaic.models.Status;
 import ro.info.uaic.models.TestType;
 
 import java.util.ArrayList;
@@ -42,6 +43,18 @@ public class FileExportServiceTest {
         candidates.add(candidate4);
         candidates.add(candidate5);
 
+        Result result1 = createResult(1, 5.5f, Status.REJECTED, "Remark1, Remark");
+        Result result2 = createResult(2, 7.5f, Status.REJECTED, "Re\"mar\"k2");
+        Result result3 = createResult(3, 8.5f, Status.TAX_ONLY, "Re\'ma\'rk3");
+        Result result4 = createResult(4, 9.5f, Status.TAX_ONLY, "Re mar k4");
+        Result result5 = createResult(5, 10f, Status.SPONSORED, "Remark5");
+
+        results.add(result1);
+        results.add(result2);
+        results.add(result3);
+        results.add(result4);
+        results.add(result5);
+
         String testResult = fileExportService.export(candidates, results);
 
         String exceptedResult =
@@ -52,8 +65,12 @@ public class FileExportServiceTest {
                 "4,\"\rIon\",\"Mar\randu\nca\",123456789,,,,0.0,0.0,,0.0,\r\n" +
                 "5,\"I on\",\"Mara nduca\",123456789,,,,0.0,0.0,,0.0,\r\n" +
                 "\r\n" +
-                "candidateId,admissionMark,status,remarks" +
-                "\r\n";
+                "candidateId,admissionMark,status,remarks\r\n" +
+                "1,5.5,REJECTED,\"Remark1, Remark\"\r\n" +
+                "2,7.5,REJECTED,\"Re\"\"mar\"\"k2\"\r\n" +
+                "3,8.5,TAX_ONLY,\"Re\'\'ma\'\'rk3\"\r\n" +
+                "4,9.5,TAX_ONLY,\"Re mar k4\"\r\n" +
+                "5,10.0,SPONSORED,Remark5\r\n";
 
         assertEquals(exceptedResult, testResult);
     }
@@ -73,5 +90,22 @@ public class FileExportServiceTest {
         returnCandidate.setCnp(cnp);
 
         return returnCandidate;
+    }
+
+    private Result createResult(
+            int candidateId,
+            float admissionMark,
+            Status status,
+            String remarks
+    )
+    {
+        Result returnResult = new Result();
+
+        returnResult.setCandidateId(candidateId);
+        returnResult.setAdmissionMark(admissionMark);
+        returnResult.setStatus(status);
+        returnResult.setRemarks(remarks);
+
+        return returnResult;
     }
 }

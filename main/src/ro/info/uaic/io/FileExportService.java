@@ -1,18 +1,13 @@
 package ro.info.uaic.io;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.stereotype.Service;
 import ro.info.uaic.models.Candidate;
 import ro.info.uaic.models.Result;
 
-import java.beans.Introspector;
-import java.io.*;
 import java.lang.reflect.Field;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by lotus on 03.05.2015.
@@ -97,25 +92,11 @@ public class FileExportService
         if(value.contains("\""))
         {
             value = value.replaceAll("\"", "\"\"");
-//            for(int index = 0; index < value.length(); index++)
-//            {
-//                if(value.charAt(index) == '\"')
-//                {
-//                    value = value.substring(0, index) + '\"' + value.substring(index, value.length());
-//                }
-//            }
         }
 
         if(value.contains("\'"))
         {
             value = value.replaceAll("\'", "\'\'");
-//            for(int index = 0; index < value.length(); index++)
-//            {
-//                if(value.charAt(index) == '\'')
-//                {
-//                    value = value.substring(0, index) + '\'' + value.substring(index, value.length());
-//                }
-//            }
         }
 
         if(value.contains("\n") ||

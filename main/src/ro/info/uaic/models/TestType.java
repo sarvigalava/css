@@ -5,5 +5,5 @@ package ro.info.uaic.models;
  */
 public enum TestType
 {
-    MATH, INFO
+    MATH, INFO, NONE
 }
