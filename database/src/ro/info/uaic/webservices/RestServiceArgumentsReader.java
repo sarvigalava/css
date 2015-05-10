@@ -19,7 +19,7 @@ public class RestServiceArgumentsReader
 {
     TableDefinition readTableDefinition(String definition)
     {
-        String[] tokens = definition.split("|");
+        String[] tokens = definition.split("[|]");
         TableDefinition tableDefinition = new TableDefinition();
         for (int i=0; i < tokens.length/2; ++i)
         {

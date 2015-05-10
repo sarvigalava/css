@@ -23,6 +23,7 @@ public class DatabaseService
     public void init()
     {
         databaseDefinition = definitionsStorageService.read(parameters.getStorageDirectory());
+
     }
 
     @Override

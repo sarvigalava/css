@@ -1,6 +1,10 @@
 package ro.info.uaic.io;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ro.info.uaic.io.FileExportService;
 import ro.info.uaic.models.Candidate;
 import ro.info.uaic.models.Result;
@@ -15,12 +19,14 @@ import static org.junit.Assert.*;
 /**
  * Created by proman on 03.05.2015.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring-config.xml")
 public class FileExportServiceTest {
+
+    @Autowired private FileExportService fileExportService;
 
     @Test
     public void testExport() throws Exception {
-        FileExportService fileExportService = new FileExportService();
-
         List<Candidate> candidates = new ArrayList<>();
         List<Result> results = new ArrayList<>();
 
