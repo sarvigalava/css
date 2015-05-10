@@ -26,4 +26,10 @@ public class Parameters
     {
         return get(Parameter.STORAGE_DIR);
     }
+
+    public void clear()
+    {
+        values.clear();
+    }
+
 }
