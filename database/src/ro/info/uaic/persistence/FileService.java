@@ -1,12 +1,14 @@
 package ro.info.uaic.persistence;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileAttribute;
 
 /**
  * Created by lotus on 03.05.2015.
@@ -20,7 +22,7 @@ public class FileService
         {
             try
             {
-                addBytesToCurrent(file, newSize - oldSize);
+                resizeFromCurrent(file, newSize - oldSize);
             }
             catch (IOException e)
             {
@@ -29,7 +31,7 @@ public class FileService
         }
     }
 
-    public void addBytesToCurrent(RandomAccessFile file, long bytes) throws IOException
+    public void resizeFromCurrent(RandomAccessFile file, long bytes) throws IOException
     {
         long initialPosition = file.getFilePointer();
         long position = initialPosition + bytes;
@@ -80,17 +82,15 @@ public class FileService
         return Files.exists(p);
     }
 
+    public boolean isDirectory(String path)
+    {
+        Path p = Paths.get(path);
+        return Files.isDirectory(p);
+    }
+
     public void createDirectory(String path)
     {
-        try
-        {
-            Path p = Paths.get(path);
-            Files.createDirectory(p);
-        }
-        catch (IOException ex)
-        {
-            handleWriteError(ex);
-        }
+        new File(path).mkdirs();
     }
 
     public void createFile(String path)
@@ -116,6 +116,25 @@ public class FileService
         {
             throw new RuntimeException(e);
         }
+    }
+
+    public void deleteRecursively(String path) throws IOException
+    {
+        Path directory = Paths.get(path);
+        Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                Files.delete(file);
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                Files.delete(dir);
+                return FileVisitResult.CONTINUE;
+            }
+
+        });
     }
 
     private void handleReadError(IOException ex)
