@@ -47,4 +47,29 @@ public class TableDefinition implements Serializable
 
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TableDefinition that = (TableDefinition) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) {
+            return false;
+        }
+        return !(columns != null ? !columns.equals(that.columns) : that.columns != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (columns != null ? columns.hashCode() : 0);
+        return result;
+    }
 }

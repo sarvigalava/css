@@ -45,4 +45,33 @@ public class ColumnDefinition implements Serializable
     public String toString() {
         return name + " " + dataType + "(" + size + ")";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        ColumnDefinition that = (ColumnDefinition) o;
+
+        if (size != that.size) {
+            return false;
+        }
+        if (name != null ? !name.equals(that.name) : that.name != null) {
+            return false;
+        }
+        return dataType == that.dataType;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (dataType != null ? dataType.hashCode() : 0);
+        result = 31 * result + size;
+        return result;
+    }
 }

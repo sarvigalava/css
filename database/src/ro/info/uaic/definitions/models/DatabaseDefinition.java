@@ -28,4 +28,24 @@ public class DatabaseDefinition implements Serializable
                 "schemas=" + schemas +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        DatabaseDefinition that = (DatabaseDefinition) o;
+
+        return !(schemas != null ? !schemas.equals(that.schemas) : that.schemas != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return schemas != null ? schemas.hashCode() : 0;
+    }
 }
