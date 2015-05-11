@@ -8,13 +8,16 @@
           <element id="module-output" name="main" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="module" name="JUnit4" module-name="main" />
-          <element id="library" level="project" name="org.glassfish.web:el-impl:2.2" />
-          <element id="library" level="project" name="org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1" />
+          <element id="library" level="project" name="com.sun.faces:jsf-api:2.1.25" />
+          <element id="library" level="project" name="com.sun.faces:jsf-impl:2.1.25" />
           <element id="library" level="application_server_libraries" name="GlassFish 4.1.0 - JSF" />
-          <element id="library" level="project" name="IceFaces-3.1.0" />
-          <element id="library" level="project" name="org.springframework:org.springframework.web:3.2.2.RELEASE" />
-          <element id="library" level="project" name="org.springframework:spring-expression:3.2.2.RELEASE" />
+          <element id="library" level="project" name="javax.inject:javax.inject:1" />
+          <element id="library" level="project" name="org.glassfish.web:el-impl:2.21" />
+          <element id="library" level="project" name="org.springframework:spring-core:3.2.2.RELEASE" />
+          <element id="library" level="project" name="org.springframework:spring-web:3.2.2.RELEASE" />
+          <element id="library" level="project" name="org.icefaces:icefaces:3.3.0" />
+          <element id="library" level="project" name="org.icefaces:icefaces-ace:3.3.0" />
+          <element id="library" level="project" name="org.icefaces:icefaces-compat:3.3.0" />
         </element>
       </element>
     </root>

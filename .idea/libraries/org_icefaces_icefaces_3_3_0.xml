@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="org.icefaces:icefaces:3.3.0" type="repository">
+    <properties maven-id="org.icefaces:icefaces:3.3.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/icefaces-3.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.faces-2.1.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet-api-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/portlet-api-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/icepush-3.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsp-api-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mail-1.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.el-api-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/FastInfoset-1.2.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/icefaces-3.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

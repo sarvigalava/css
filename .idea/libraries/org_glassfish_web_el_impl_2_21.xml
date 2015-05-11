@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="org.glassfish.web:el-impl:2.21" type="repository">
+    <properties maven-id="org.glassfish.web:el-impl:2.2" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/el-impl-2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/el-api-2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/el-impl-2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

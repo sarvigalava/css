@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="com.sun.faces:jsf-impl:2.1.25" type="repository">
+    <properties maven-id="com.sun.faces:jsf-impl:2.1.25" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jsf-impl-2.1.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet-api-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp-api-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.el-api-2.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jstl-api-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/servlet-api-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsp-api-2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jsf-impl-2.1.25-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

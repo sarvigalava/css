@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Created by lotus on 03.05.2015.
  */
 @Component
-@Scope("view")
+@Scope("request")
 public class IndexBean implements Serializable
 {
     private boolean selected = true;
