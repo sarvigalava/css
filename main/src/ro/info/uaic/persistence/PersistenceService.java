@@ -20,6 +20,7 @@ public class PersistenceService
         for (int i=0; i<100; ++i)
         {
             Candidate candidate = new Candidate();
+            candidate.setId(i);
             candidate.setAddress("Address " + i);
             candidate.setFirstName("First Name " + i);
             candidate.setLastName("Last Name " + i);

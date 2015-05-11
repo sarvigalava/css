@@ -15,16 +15,13 @@ import java.util.List;
 @Service
 public class FileExportService
 {
-    public String export(List<Candidate> candidates, List<Result> results)
+    private static final String CSV_SEPARATOR = ",";
+    private static final String CSV_ENDLINE = "\r\n";
+
+    public String export(List<Candidate> candidates)
     {
-        String CSV_SEPARATOR = ",";
-        String CSV_ENDLINE = "\r\n";
-
         StringBuilder output = new StringBuilder();
-
         Field[] candidateFields = Candidate.class.getDeclaredFields();
-        Field[] resultFields = Result.class.getDeclaredFields();
-
         // Generate line with field of candidate
         for(int i = 0; i < candidateFields.length; i++)
         {
@@ -39,23 +36,30 @@ public class FileExportService
         for (Candidate candidate : candidates) {
             BeanWrapper candidateWrapper = new BeanWrapperImpl(candidate);
 
-            for(int i = 0; i < candidateFields.length; i++)
-            {
+            for (int i = 0; i < candidateFields.length; i++) {
                 String csvValue = "";
 
                 Object value = candidateWrapper.getPropertyValue(candidateFields[i].getName());
-                if(value != null)
-                {
+                if (value != null) {
                     csvValue = value.toString();
                 }
 
                 output.append(checkCsvValueRules(csvValue));
-                if(i != candidateFields.length-1)
+                if (i != candidateFields.length - 1)
                     output.append(CSV_SEPARATOR);
             }
 
             output.append(CSV_ENDLINE);
         }
+
+        return output.toString();
+    }
+
+    public String export(List<Candidate> candidates, List<Result> results)
+    {
+
+        StringBuilder output = new StringBuilder(export(candidates));
+        Field[] resultFields = Result.class.getDeclaredFields();
 
         // Insert blank line
         output.append(CSV_ENDLINE);
