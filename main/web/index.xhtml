@@ -77,63 +77,39 @@
             </ace:tabPane>
             <ace:tabPane id="results" label="Results">
                 <h:panelGroup style="display: block;">
-                    <ace:dataTable id="rasultsTable" var="cadidate"
-                                   value="#{indexBean.candidates}"
+                    <ace:dataTable id="rasultsTable" var="result"
+                                   value="#{indexBean.results}"
                                    rows="10"
                                    paginator="true"
                                    style="width:100%">
                         <ace:column id="firstName">
                             <f:facet name="header">First Name</f:facet>
-                            #{candidate.firstName}
+                            #{result.candidate.firstName}
                         </ace:column>
                         <ace:column id="lastName">
                             <f:facet name="header">Last Name</f:facet>
-                            #{candidate.lastName}
+                            #{result.candidate.lastName}
                         </ace:column>
                         <ace:column id="cnp">
                             <f:facet name="header">CNP</f:facet>
-                            #{candidate.cnp}
+                            #{result.candidate.cnp}
                         </ace:column>
-                        <ace:column id="address">
-                            <f:facet name="header">Address</f:facet>
-                            #{candidate.address}
+                        <ace:column id="admissionMark">
+                            <f:facet name="header">Admission Mark</f:facet>
+                            #{result.result.admissionMark}
                         </ace:column>
-                        <ace:column id="bDate">
-                            <f:facet name="header">Birth Date</f:facet>
-                            <h:outputText value="#{candidate.birthDate}">
-                                <f:convertDateTime pattern="dd-MM-YYYY"/>
-                            </h:outputText>
+                        <ace:column id="status">
+                            <f:facet name="header">Admission Status</f:facet>
+                            #{result.result.status}
                         </ace:column>
-                        <ace:column id="testType">
-                            <f:facet name="header">Test Type</f:facet>
-                            #{candidate.testType}
-                        </ace:column>
-                        <ace:column id="testMark">
-                            <f:facet name="header">Test Mark</f:facet>
-                            #{candidate.testMark}
-                        </ace:column>
-                        <ace:column id="bacAvg">
-                            <f:facet name="header">Exam AVG</f:facet>
-                            #{candidate.avgBac}
-                        </ace:column>
-                        <ace:column id="bacDomain">
-                            <f:facet name="header">Exam domain</f:facet>
-                            #{candidate.bacDomain}
-                        </ace:column>
-                        <ace:column id="bacMark">
-                            <f:facet name="header">Exam Domain Mark</f:facet>
-                            #{candidate.bacDomainMark}
-                        </ace:column>
-                        <ace:column id="applicationDate">
-                            <f:facet name="header">Application Date</f:facet>
-                            <h:outputText value="#{candidate.applicationDate}">
-                                <f:convertDateTime pattern="dd-MM-YYYY" />
-                            </h:outputText>
+                        <ace:column id="remarks">
+                            <f:facet name="header">Remarks</f:facet>
+                            #{result.result.remarks}
                         </ace:column>
                     </ace:dataTable>
                 </h:panelGroup>
-                <h:panelGroup style="display: block;">
-                    <h:outputLink value="files/candidates">Download as CSV</h:outputLink>
+                <h:panelGroup style="display: block; margin-top: 20px">
+                    <h:outputLink value="files/results">Download as CSV</h:outputLink>
                 </h:panelGroup>
             </ace:tabPane>
         </ace:tabSet>
