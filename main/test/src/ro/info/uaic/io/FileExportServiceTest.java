@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ro.info.uaic.io.FileExportService;
 import ro.info.uaic.models.Candidate;
 import ro.info.uaic.models.Result;
 import ro.info.uaic.models.Status;
@@ -57,7 +56,7 @@ public class FileExportServiceTest {
 
         String testResult = fileExportService.export(candidates, results);
 
-        String exceptedResult =
+        String expectedResult =
                 "id,firstName,lastName,cnp,address,birthDate,testType,testMark,avgBac,bacDomain,bacDomainMark,applicationDate\r\n" +
                 "1,\"Ion\"\"\",\"Ma\"\"\"\"randuca\",123456789,,,,0.0,0.0,,0.0,\r\n" +
                 "2,\"Io\'\'n\",\"Ma\'\'ra\'\'nduca\",123456789,,,,0.0,0.0,,0.0,\r\n" +
@@ -72,7 +71,7 @@ public class FileExportServiceTest {
                 "4,9.5,TAX_ONLY,\"Re mar k4\"\r\n" +
                 "5,10.0,SPONSORED,Remark5\r\n";
 
-        assertEquals(exceptedResult, testResult);
+        assertEquals(expectedResult, testResult);
     }
 
     private Candidate createCandidate(
