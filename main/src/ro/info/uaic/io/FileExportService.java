@@ -55,10 +55,9 @@ public class FileExportService
         return output.toString();
     }
 
-    public String export(List<Candidate> candidates, List<Result> results)
+    public String exportResults(List<Result> results)
     {
-
-        StringBuilder output = new StringBuilder(export(candidates));
+        StringBuilder output = new StringBuilder();
         Field[] resultFields = Result.class.getDeclaredFields();
 
         // Insert blank line
@@ -87,8 +86,14 @@ public class FileExportService
             output.append(CSV_ENDLINE);
         }
 
-        // Return result
         return output.toString();
+
+    }
+
+    public String export(List<Candidate> candidates, List<Result> results)
+    {
+        // Return result
+        return export(candidates) + exportResults(results);
     }
 
     private String checkCsvValueRules(String value)
