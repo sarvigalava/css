@@ -21,11 +21,11 @@
                                    rows="10"
                                    paginator="true"
                                    style="width:100%">
-                        <ace:column id="firstName">
+                        <ace:column id="firstName" sortBy="#{candidate.firstName}">
                             <f:facet name="header">First Name</f:facet>
                             #{candidate.firstName}
                         </ace:column>
-                        <ace:column id="lastName">
+                        <ace:column id="lastName" sortBy="#{candidate.lastName}">
                             <f:facet name="header">Last Name</f:facet>
                             #{candidate.lastName}
                         </ace:column>
@@ -104,11 +104,11 @@
                                    rows="10"
                                    paginator="true"
                                    style="width:100%">
-                        <ace:column id="firstName">
+                        <ace:column id="firstName" sortBy="#{result.candidate.firstName}">
                             <f:facet name="header">First Name</f:facet>
                             #{result.candidate.firstName}
                         </ace:column>
-                        <ace:column id="lastName">
+                        <ace:column id="lastName" sortBy="#{result.candidate.lastName}">
                             <f:facet name="header">Last Name</f:facet>
                             #{result.candidate.lastName}
                         </ace:column>
@@ -116,7 +116,7 @@
                             <f:facet name="header">CNP</f:facet>
                             #{result.candidate.cnp}
                         </ace:column>
-                        <ace:column id="admissionMark">
+                        <ace:column id="admissionMark" sortBy="#{result.result.admissionMark}">
                             <f:facet name="header">Admission Mark</f:facet>
                             #{result.result.admissionMark}
                         </ace:column>
