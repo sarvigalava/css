@@ -1,5 +1,6 @@
 package ro.info.uaic.compute;
 
+import org.springframework.stereotype.Service;
 import ro.info.uaic.models.Candidate;
 import ro.info.uaic.models.Result;
 import ro.info.uaic.models.Status;
@@ -10,6 +11,7 @@ import java.util.*;
 /**
  * Created by proman on 10.05.2015.
  */
+@Service
 public class Compute {
     public List<Result> computeResults(List<Candidate> candidates, int numOfSponsored, int numOfTaxOnly) {
         List<Result> results = new ArrayList<>();

@@ -72,13 +72,35 @@
                     </ace:dataTable>
                 </h:panelGroup>
                 <h:panelGroup style="display: block; margin-top: 20px">
-                    <h:outputLink value="files/candidates">Download as CSV</h:outputLink>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel for="nrOfSponsored" value="Number of Sponsored :" />
+                        <h:panelGrid columns="2">
+                            <h:inputText id="nrOfSponsored" value="#{indexBean.nrOfSponsored}" required="true">
+                                <f:convertNumber integerOnly="true" />
+                            </h:inputText>
+                            <h:message for="nrOfSponsored" />
+                        </h:panelGrid>
+
+                        <h:outputLabel for="nrOfTaxOnly" value="Number of Tax Only :" />
+                        <h:panelGrid columns="2">
+                            <h:inputText id="nrOfTaxOnly" value="#{indexBean.nrOfTaxOnly}" required="true">
+                                <f:convertNumber integerOnly="true" />
+                            </h:inputText>
+                            <h:message for="nrOfTaxOnly" />
+                        </h:panelGrid>
+
+                        <ace:pushButton id="calculateButton" value="Calculate Results"
+                                        actionListener="#{indexBean.calculateResults}">
+                            <ace:ajax execute="@all" render="@all"/>
+                        </ace:pushButton>
+                        <h:outputLink value="files/candidates">Download as CSV</h:outputLink>
+                    </h:panelGrid>
                 </h:panelGroup>
             </ace:tabPane>
-            <ace:tabPane id="results" label="Results">
+            <ace:tabPane id="results" label="Results" disabled="#{not indexBean.calculated}">
                 <h:panelGroup style="display: block;">
                     <ace:dataTable id="rasultsTable" var="result"
-                                   value="#{indexBean.results}"
+                                   value="#{indexBean.resultsWrappers}"
                                    rows="10"
                                    paginator="true"
                                    style="width:100%">
