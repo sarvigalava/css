@@ -62,7 +62,7 @@ public class IndexBean implements Serializable
 
     public void calculateResults(ActionEvent event)
     {
-        results = compute.computeResults(candidates, 100, 50);
+        results = compute.computeResults(candidates, nrOfSponsored, nrOfTaxOnly);
         calculated = true;
     }
 
