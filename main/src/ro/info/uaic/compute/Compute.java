@@ -36,20 +36,20 @@ public class Compute {
             @Override
             public int compare(Result o1, Result o2) {
                 if(o1.getAdmissionMark() < o2.getAdmissionMark()) {
-                    return -1;
+                    return 1;
                 }
                 else if(o1.getAdmissionMark() == o2.getAdmissionMark()) {
                     return 0;
                 }
-                return 1;
+                return -1;
             }
         });
 
         for(int i = 0; i < results.size(); i++) {
-            if(i <= numOfSponsored) {
+            if(i+1 <= numOfSponsored) {
                 results.get(i).setStatus(Status.SPONSORED);
             }
-            else if((i > numOfSponsored) && (i <= (numOfTaxOnly+numOfSponsored))) {
+            else if((i+1 > numOfSponsored) && (i+1 <= (numOfTaxOnly+numOfSponsored))) {
                 results.get(i).setStatus(Status.TAX_ONLY);
             }
             else {
