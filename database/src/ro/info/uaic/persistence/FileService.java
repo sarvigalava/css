@@ -18,6 +18,8 @@ public class FileService
 {
     public void shiftContent(RandomAccessFile file, long oldSize, long newSize)
     {
+        assert oldSize > 0;
+        assert newSize > 0;
         if (oldSize != newSize)
         {
             try

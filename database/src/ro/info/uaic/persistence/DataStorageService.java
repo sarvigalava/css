@@ -1,5 +1,6 @@
 package ro.info.uaic.persistence;
 
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.info.uaic.Serializer;
@@ -65,7 +66,10 @@ public class DataStorageService
     private Cell readCell(RandomAccessFile file, ColumnDefinition columnDefinition) throws EOFException
     {
         int cellSize = dataSizeService.getCellSize(columnDefinition);
+        assert cellSize > 0;
         Cell cell = new Cell();
+
+        assert !Strings.isNullOrEmpty(columnDefinition.getName());
         cell.setColumn(columnDefinition.getName());
         try
         {
@@ -74,13 +78,13 @@ public class DataStorageService
                 case DATE: cell.setData(new Date(file.readLong())); break;
                 case STRING:
                     byte[] buff = new byte[cellSize];
-                    file.read(buff);
+                    assert buff.length == file.read(buff);
                     cell.setData(new String(buff));
                     break;
                 case INTEGER: cell.setData(file.readLong()); break;
                 case RAW:
                     buff = new byte[cellSize];
-                    file.read(buff);
+                    assert buff.length == file.read(buff);
                     cell.setData(buff);
                     break;
                 case FLOAT: cell.setData(file.readDouble()); break;

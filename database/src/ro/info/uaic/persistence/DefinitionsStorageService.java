@@ -1,5 +1,6 @@
 package ro.info.uaic.persistence;
 
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.info.uaic.Serializer;
@@ -26,6 +27,7 @@ public class DefinitionsStorageService
             return new DatabaseDefinition();
         }
         byte[] definitions = fileService.readBytes(file);
+        assert definitions != null;
 
         return deserializeDefinitions(definitions);
     }
@@ -33,11 +35,13 @@ public class DefinitionsStorageService
     public void store(DatabaseDefinition databaseDefinition, String directory)
     {
         String file = pathsService.getDefinitionsFilePath(directory);
+        assert !Strings.isNullOrEmpty(file);
         if (!fileService.fileExists(file))
         {
             fileService.createFile(file);
         }
         byte[] serializedDefinitions = serializeDefinitions(databaseDefinition);
+        assert serializedDefinitions != null;
         fileService.writeBytes(serializedDefinitions, file);
     }
 

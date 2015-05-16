@@ -1,5 +1,6 @@
 package ro.info.uaic.persistence;
 
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.info.uaic.definitions.models.SchemaDefinition;
@@ -20,11 +21,18 @@ public class PathsService
 
     public String getSchemaDirectory(SchemaDefinition schemaDefinition)
     {
+        assert !Strings.isNullOrEmpty(parameters.getStorageDirectory());
+        assert !Strings.isNullOrEmpty(schemaDefinition.getName());
+
         return parameters.getStorageDirectory() + File.separator + schemaDefinition.getName().toLowerCase();
     }
 
     public String getTableFile(SchemaDefinition schemaDefinition, TableDefinition tableDefinition)
     {
+        assert !Strings.isNullOrEmpty(parameters.getStorageDirectory());
+        assert !Strings.isNullOrEmpty(schemaDefinition.getName());
+        assert !Strings.isNullOrEmpty(tableDefinition.getName());
+
         return getSchemaDirectory(schemaDefinition) + File.separator + tableDefinition.getName().toLowerCase();
     }
 
