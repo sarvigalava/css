@@ -44,4 +44,18 @@ public class DataSizeService
 
         return total;
     }
+
+    public long getOffsetTo(TableDefinition tableDefinition, ColumnDefinition columnDefinition)
+    {
+        long offset = 0;
+        for (ColumnDefinition cd : tableDefinition.getColumns())
+        {
+            if (cd.equals(columnDefinition))
+                break;
+
+            offset += getCellSize(columnDefinition);
+        }
+
+        return offset;
+    }
 }
