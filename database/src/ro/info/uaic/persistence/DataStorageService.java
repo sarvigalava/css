@@ -12,7 +12,6 @@ import ro.info.uaic.structures.Cell;
 import ro.info.uaic.structures.Record;
 
 import java.io.EOFException;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -76,32 +75,70 @@ public class DataStorageService
         assert initialFileLength % rowSize  == 0;
         assert columnExists(tableDefinition, cell.getColumn());
 
-        ColumnDefinition columnDefinition = tableDefinition.getColumns()
-                .stream()
-                .filter(c -> c.getName().equalsIgnoreCase(cell.getColumn()))
-                .findFirst()
-                .orElse(null);
+        ColumnDefinition columnDefinition = getColumnDefinitionByName(tableDefinition, cell);
 
         assert sameType(cell, columnDefinition);
         long columnOffset = dataSizeService.getOffsetTo(tableDefinition, columnDefinition);
         long records = initialFileLength / rowSize;
         assert columnOffset > 0 && columnOffset < rowSize;
 
-        List<Integer> recordsToDelete = new ArrayList<>();
-        for (int i = 1; i < records; ++i)
-        {
-            file.seek(columnOffset * i);
-            Cell storedCell = readCell(file, columnDefinition);
-            if (cell.getData().equals(storedCell.getData()))
-            {
-                recordsToDelete.add(i);
-            }
-        }
+        List<Integer> recordsToDelete = searchRecordsByCell(cell, file, columnDefinition, columnOffset, records, rowSize);
 
         deleteRecords(file, rowSize, recordsToDelete);
         assert file.length() <= initialFileLength;
         file.close();
     }
+
+    public void update(SchemaDefinition schemaDefinition, TableDefinition tableDefinition, Cell cell, List<Cell> toUpdate)
+            throws IOException
+    {
+        String tablePath = pathsService.getTableFile(schemaDefinition, tableDefinition);
+        RandomAccessFile file = fileService.openFile(tablePath, true);
+        long initialFileLength = file.length();
+        long rowSize = dataSizeService.getRowSize(tableDefinition);
+        assert initialFileLength % rowSize  == 0;
+        assert columnExists(tableDefinition, cell.getColumn());
+        assert columnExists(tableDefinition, toUpdate);
+
+        ColumnDefinition columnDefinition = getColumnDefinitionByName(tableDefinition, cell);
+
+        assert sameType(cell, columnDefinition);
+        long columnOffset = dataSizeService.getOffsetTo(tableDefinition, columnDefinition);
+        long records = initialFileLength / rowSize;
+        assert columnOffset > 0 && columnOffset < rowSize;
+
+        List<Integer> recordsToUpdate = searchRecordsByCell(cell, file, columnDefinition, columnOffset, records, rowSize);
+
+        updateRecords(schemaDefinition, tableDefinition, file, rowSize, recordsToUpdate, toUpdate);
+        assert file.length() <= initialFileLength;
+        file.close();
+    }
+
+    private ColumnDefinition getColumnDefinitionByName(TableDefinition tableDefinition, Cell cell)
+    {
+        return tableDefinition.getColumns()
+                    .stream()
+                    .filter(c -> c.getName().equalsIgnoreCase(cell.getColumn()))
+                    .findFirst()
+                    .orElse(null);
+    }
+
+    private List<Integer> searchRecordsByCell(Cell cell, RandomAccessFile file, ColumnDefinition columnDefinition,
+                                              long columnOffset, long records, long rowSize) throws IOException
+    {
+        List<Integer> recordList = new ArrayList<>();
+        for (int i = 1; i < records; ++i)
+        {
+            file.seek(i * rowSize + columnOffset);
+            Cell storedCell = readCell(file, columnDefinition);
+            if (cell.getData().equals(storedCell.getData()))
+            {
+                recordList.add(i);
+            }
+        }
+        return recordList;
+    }
+
 
     private void deleteRecords(RandomAccessFile file, long rowSize, List<Integer> recordsToDelete) throws IOException
     {
@@ -110,6 +147,25 @@ public class DataStorageService
             assert record >= 0;
             file.seek(record * rowSize);
             fileService.resizeFromCurrent(file, -rowSize);
+        }
+    }
+
+    private void updateRecords(SchemaDefinition schemaDefinition, TableDefinition tableDefinition, RandomAccessFile file,
+                               long rowSize, List<Integer> recordsToUpdate, List<Cell> toUpdate) throws IOException
+    {
+        for (Integer record : recordsToUpdate)
+        {
+            assert record >= 0;
+            for (Cell cell : toUpdate)
+            {
+                ColumnDefinition columnDefinition = getColumnDefinitionByName(tableDefinition, cell);
+                long offset = dataSizeService.getOffsetTo(tableDefinition, columnDefinition);
+                assert offset < rowSize;
+                file.seek(record * rowSize + offset);
+                fileService.resizeFromCurrent(file, -offset);
+                file.seek(record * rowSize + offset);
+                writeCell(file, cell, columnDefinition);
+            }
         }
     }
 
@@ -225,6 +281,11 @@ public class DataStorageService
     private boolean columnExists(TableDefinition tableDefinition, String columnName)
     {
         return tableDefinition.getColumns().stream().anyMatch(c -> c.getName().equalsIgnoreCase(columnName));
+    }
+
+    private boolean columnExists(TableDefinition tableDefinition, List<Cell> cells)
+    {
+        return cells.stream().allMatch(c -> columnExists(tableDefinition, c.getColumn()));
     }
 
     private boolean columnsExists(TableDefinition tableDefinition, List<Record> records)
