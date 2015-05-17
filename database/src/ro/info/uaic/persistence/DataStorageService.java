@@ -64,6 +64,7 @@ public class DataStorageService
         long fileLength = file.length();
         assert fileLength % rowSize == 0;
         assert fileLength > initialFileLength;
+        file.close();
     }
 
     public void delete(SchemaDefinition schemaDefinition, TableDefinition tableDefinition, Cell cell) throws IOException
@@ -98,6 +99,8 @@ public class DataStorageService
         }
 
         deleteRecords(file, rowSize, recordsToDelete);
+        assert file.length() <= initialFileLength;
+        file.close();
     }
 
     private void deleteRecords(RandomAccessFile file, long rowSize, List<Integer> recordsToDelete) throws IOException
